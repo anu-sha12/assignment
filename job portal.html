@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Job Board</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .apply-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
+    .modal-content { background: white; padding: 2rem; border-radius: 8px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
+    .job-details { display: none; }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Header -->
+  <header class="bg-blue-600 text-white p-6 shadow-md">
+    <h1 class="text-3xl font-bold">TechJobs</h1>
+    <p class="text-sm">Find your dream job in tech</p>
+  </header>
+
+  <!-- Job Listings -->
+  <main class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-semibold mb-6">Latest Job Openings (10 Positions)</h2>
+
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      
+      <!-- Job 1 -->
+      <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
+        <div class="flex items-center mb-4">
+          <img src="https://logo.clearbit.com/google.com" alt="Google Logo" class="w-10 h-10 rounded-full mr-3">
+          <div>
+            <h3 class="text-xl font-bold text-blue-600">Senior Software Engineer</h3>
+            <p class="text-sm text-gray-600">Google • Mountain View, CA</p>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-2"><span class="font-semibold">Salary:</span> $120K - $180K</p>
+        <p class="text-sm text-gray-500 mb-4">Posted 2 days ago</p>
+        <button onclick="toggleJobDetails(1)" class="text-blue-600 text-sm mb-4">▼ View Details</button>
+        <div id="jobDetails1" class="job-details text-sm text-gray-700 mb-4">
+          <p class="font-semibold">Job Description:</p>
+          <ul class="list-disc pl-5 mb-3">
+            <li>Design and implement scalable backend systems for Google Cloud</li>
+            <li>Optimize distributed systems for performance and reliability</li>
+            <li>Collaborate with cross-functional teams</li>
+          </ul>
+          <p class="font-semibold">Eligibility:</p>
+          <ul class="list-disc pl-5">
+            <li>5+ years of experience with Java/Python/Go</li>
+            <li>Strong algorithms and data structures knowledge</li>
+            <li>BS/MS in Computer Science or equivalent</li>
+          </ul>
+        </div>
+        <button onclick="openApplyModal('Senior Software Engineer', 'Google')" class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+          Apply Now
+        </button>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
+        <div class="flex items-center mb-4">
+          <img src="https://logo.clearbit.com/amazon.com" alt="Amazon Logo" class="w-10 h-10 rounded-full mr-3">
+          <div>
+            <h3 class="text-xl font-bold text-green-600">Product Manager</h3>
+            <p class="text-sm text-gray-600">Amazon • Seattle, WA (Hybrid)</p>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-2"><span class="font-semibold">Salary:</span> $110K - $160K</p>
+        <p class="text-sm text-gray-500 mb-4">Posted 1 week ago</p>
+        <button onclick="toggleJobDetails(2)" class="text-green-600 text-sm mb-4">▼ View Details</button>
+        <div id="jobDetails2" class="job-details text-sm text-gray-700 mb-4">
+          <p class="font-semibold">Job Description:</p>
+          <ul class="list-disc pl-5 mb-3">
+            <li>Define product roadmap for AWS tools</li>
+            <li>Gather requirements from stakeholders</li>
+            <li>Prioritize feature development</li>
+          </ul>
+          <p class="font-semibold">Eligibility:</p>
+          <ul class="list-disc pl-5">
+            <li>3+ years product management experience</li>
+            <li>Technical background preferred</li>
+            <li>MBA or equivalent experience</li>
+          </ul>
+        </div>
+        <button onclick="openApplyModal('Product Manager', 'Amazon')" class="w-full bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+          Apply Now
+        </button>
+      </div>
+
+      <!-- Job 3 -->
+      <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
+        <div class="flex items-center mb-4">
+          <img src="https://logo.clearbit.com/spotify.com" alt="Spotify Logo" class="w-10 h-10 rounded-full mr-3">
+          <div>
+            <h3 class="text-xl font-bold text-purple-600">UX Designer</h3>
+            <p class="text-sm text-gray-600">Spotify • Remote</p>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-2"><span class="font-semibold">Salary:</span> $90K - $140K</p>
+        <p class="text-sm text-gray-500 mb-4">Posted 3 days ago</p>
+        <button onclick="toggleJobDetails(3)" class="text-purple-600 text-sm mb-4">▼ View Details</button>
+        <div id="jobDetails3" class="job-details text-sm text-gray-700 mb-4">
+          <p class="font-semibold">Job Description:</p>
+          <ul class="list-disc pl-5 mb-3">
+            <li>Redesign mobile app user flows</li>
+            <li>Conduct user research and testing</li>
+            <li>Create prototypes in Figma</li>
+          </ul>
+          <p class="font-semibold">Eligibility:</p>
+          <ul class="list-disc pl-5">
+            <li>Portfolio demonstrating UX work</li>
+            <li>2+ years experience in product design</li>
+            <li>Proficiency in design tools</li>
+          </ul>
+        </div>
+        <button onclick="openApplyModal('UX Designer', 'Spotify')" class="w-full bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition">
+          Apply Now
+        </button>
+      </div>
+
+      <!-- Job 4 -->
+      <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
+        <div class="flex items-center mb-4">
+          <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft Logo" class="w-10 h-10 rounded-full mr-3">
+          <div>
+            <h3 class="text-xl font-bold text-red-600">Data Scientist</h3>
+            <p class="text-sm text-gray-600">Microsoft • Redmond, WA</p>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-2"><span class="font-semibold">Salary:</span> $130K - $190K</p>
+        <p class="text-sm text-gray-500 mb-4">Posted 5 days ago</p>
+        <button onclick="toggleJobDetails(4)" class="text-red-600 text-sm mb-4">▼ View Details</button>
+        <div id="jobDetails4" class="job-details text-sm text-gray-700 mb-4">
+          <p class="font-semibold">Job Description:</p>
+          <ul class="list-disc pl-5 mb-3">
+            <li>Develop machine learning models for Office 365</li>
+            <li>Analyze large datasets</li>
+            <li>Present findings to stakeholders</li>
+          </ul>
+          <p class="font-semibold">Eligibility:</p>
+          <ul class="list-disc pl-5">
+            <li>PhD or MS in Statistics/CS</li>
+            <li>Experience with TensorFlow/PyTorch</li>
+            <li>Strong Python/SQL skills</li>
+          </ul>
+        </div>
+        <button onclick="openApplyModal('Data Scientist', 'Microsoft')" class="w-full bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
+          Apply Now
+        </button>
+      </div>
+
+      <!-- Job 5 -->
+      <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
+        <div class="flex items-center mb-4">
+          <img src="https://logo.clearbit.com/apple.com" alt="Apple Logo" class="w-10 h-10 rounded-full mr-3">
+          <div>
+            <h3 class="text-xl font-bold text-gray-600">iOS Developer</h3>
+            <p class="text-sm text-gray-600">Apple • Cupertino, CA</p>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-2"><span class="font-semibold">Salary:</span> $140K - $200K</p>
+        <p class="text-sm text-gray-500 mb-4">Posted 1 day ago</p>
+        <button onclick="toggleJobDetails(5)" class="text-gray-600 text-sm mb-4">▼ View Details</button>
+        <div id="jobDetails5" class="job-details text-sm text-gray-700 mb-4">
+          <p class="font-semibold">Job Description:</p>
+          <ul class="list-disc pl-5 mb-3">
+            <li>Develop new features for iOS apps</li>
+            <li>Optimize app performance</li>
+            <li>Work with design team</li>
+          </ul>
+          <p class="font-semibold">Eligibility:</p>
+          <ul class="list-disc pl-5">
+            <li>3+ years Swift experience</li>
+            <li>Published apps in App Store</li>
+            <li>Understanding of UIKit/SwiftUI</li>
+          </ul>
+        </div>
+        <button onclick="openApplyModal('iOS Developer', 'Apple')" class="w-full bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition">
+          Apply Now
+        </button>
+      </div>
+
+      <!-- Jobs 6-10 would follow the same pattern -->
+      <!-- Job 6 - Cybersecurity Specialist @ Cisco -->
+      <!-- Job 7 - DevOps Engineer @ Netflix -->
+      <!-- Job 8 - Marketing Manager @ Meta -->
+      <!-- Job 9 - Technical Writer @ IBM -->
+      <!-- Job 10 - Cloud Architect @ Oracle -->
+
+    </div>
+  </main>
+
+  <!-- Apply Modal -->
+  <div id="applyModal" class="apply-modal">
+    <div class="modal-content">
+      <h3 class="text-xl font-bold mb-4" id="modalTitle">Apply for <span id="jobTitle"></span> at <span id="companyName"></span></h3>
+      <form id="applicationForm" class="space-y-4">
+        <div>
+          <label class="block text-gray-700 mb-1">Full Name*</label>
+          <input type="text" required class="w-full px-3 py-2 border rounded">
+        </div>
+        <div>
+          <label class="block text-gray-700 mb-1">Email*</label>
+          <input type="email" required class="w-full px-3 py-2 border rounded">
+        </div>
+        <div>
+          <label class="block text-gray-700 mb-1">Phone</label>
+          <input type="tel" class="w-full px-3 py-2 border rounded">
+        </div>
+        <div>
+          <label class="block text-gray-700 mb-1">Resume (PDF)*</label>
+          <input type="file" accept=".pdf" required class="w-full px-3 py-2 border rounded">
+        </div>
+        <div>
+          <label class="block text-gray-700 mb-1">Cover Letter</label>
+          <textarea class="w-full px-3 py-2 border rounded" rows="4"></textarea>
+        </div>
+        <div class="flex justify-end space-x-3">
+          <button type="button" onclick="closeApplyModal()" class="px-4 py-2 border rounded">Cancel</button>
+          <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Submit Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-200 text-center p-4 mt-12">
+    <p class="text-sm text-gray-700">&copy; 2025 TechJobs. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Toggle job details visibility
+    function toggleJobDetails(jobNumber) {
+      const details = document.getElementById(`jobDetails${jobNumber}`);
+      const button = document.querySelector(`button[onclick="toggleJobDetails(${jobNumber})"]`);
+      
+      if (details.style.display === 'block') {
+        details.style.display = 'none';
+        button.textContent = '▼ View Details';
+      } else {
+        details.style.display = 'block';
+        button.textContent = '▲ Hide Details';
+      }
+    }
+
+    // Application modal functions
+    function openApplyModal(jobTitle, companyName) {
+      document.getElementById('jobTitle').textContent = jobTitle;
+      document.getElementById('companyName').textContent = companyName;
+      document.getElementById('applyModal').style.display = 'flex';
+    }
+
+    function closeApplyModal() {
+      document.getElementById('applyModal').style.display = 'none';
+    }
+
+    document.getElementById('applicationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Application submitted successfully!');
+      closeApplyModal();
+    });
+
+    // Close modal when clicking outside
+    document.getElementById('applyModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeApplyModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
